@@ -1,0 +1,146 @@
+# Клиент делает заказ на обед (выбирать из меню) и указывать время когда он хотел бы получить заказ.
+# Система показывает цену заказа и предлагает оплатить с клиентского счёта или наличными при получении заказа.
+# Клиенту за предварительные заказы начисляются баллы лояльности.
+# Если клиент делает заказ, и не забирает его, то баллы лояльности снимаются вплоть до его блокировки.
+# Клиент может оценивать каждый заказ и оставлять отзывы.
+# Администратор управляет меню, выставляет/убирает баны/ бонусы/баллы Клиентам
+
+foods = {'1': 'Burger', '2': 'Borsh', '3': 'Steyk s kartoshkoy', '4': 'Spageti',
+         '5': 'Plov', '6': 'Pizza', '7': 'Dranniki', '8': 'Sushi'}
+pays = {'1': 'Card', '2': 'Cash'}
+restaurants = ['Issimo', 'Yapona mama', 'Dominos pizza',
+               'Vasilki', 'KFC', "McDonald's", 'Uzbek food']
+
+
+class Admin:
+    def __init__(self, name, surname, phone_number):
+        self.name = name
+        self.surname = surname
+        self.phone_number = phone_number
+
+    def menu_management(self):
+        return 'Menu changes saved'
+
+    def clientPoints(self):
+        return 'Points awarded to the client'
+
+    def __str__(self):
+        return f'Admin - {self.name} {self.surname} {self.phone_number}'
+
+
+Seva = Admin("Sevinch", "Alimkhodjaeva", 296287013)
+print(Seva)
+
+
+# print(Seva.menu_management())
+# print(Seva.clientPoints())
+
+
+class Client:
+    def __init__(self, name, surname, phone_number, address, loyalty_points,
+                 card_number):
+        self.name = name
+        self.surname = surname
+        self.phone_number = phone_number
+        self.address = address
+        self.loyalty_points = loyalty_points
+        self.card_number = card_number
+
+    # def fio(self):
+    #     return f"Klient {fio}"
+
+    def zakaz(self, food):
+        return f"Your order {food} has been confirmed."
+
+    def time(self):
+        return f"You have chosen {vremya} time to receive an order "
+
+    def pay_zakaz(self, pay):
+        return f'You have chosen a {pay} payment method '
+
+    def otziv(self):
+        return "You left a review"
+
+    def point(self):
+        return "You put in an order"
+
+    def __str__(self):
+        return f'Client - {self.name} {self.surname} {self.phone_number} {self.address}' \
+               f' {self.loyalty_points} {self.card_number}'
+
+
+vali = Client("Valijon", "Rakhmatullaev", 333456789, "address - Bedi-4,", 'points - 0,',
+              "card_number = 5678")
+
+
+# print(vali)
+
+
+class Rest:
+    def __init__(self, name, address, title):
+        self.name = name
+        self.address = address
+        self.title = title
+
+    def vibor_rest(self, restaurants):
+        return f"You chosen {vibor} restaurant"
+
+    def done(self):
+        return "Order is ready"
+
+    def __str__(self):
+        return f"Restaurant - {self.name}, address - {self.address} , title - {self.title} "
+
+
+class Food:
+    def __init__(self, name, price, description):
+        self.name = name
+        self.price = price
+        self.description = description
+
+
+class Order:
+    def __init__(self, Rest, Client, Food):
+        self.Rest = Rest
+        self.Client = Client
+        self.Food = Food
+
+
+re = Rest("Imperiya ", "Winners Avenue 18 ", 5)
+print(re)
+print(vali)
+# fio = input("Vvedite fio klienta! ")
+# print(vali.fio())
+
+vibor = int(input("Choose a restaurant! "
+                  "1 - Issimo "
+                  "2 - Yapona mama "
+                  "3 - Dominos pizza "
+                  "4 - Vasilki "
+                  "5 - KFC "
+                  "6 - McDonald's "
+                  "7 - Uzbek food "))
+
+print(re.vibor_rest(restaurants[vibor]))
+
+zak = input("Choose a dish! "
+            "1 - Burger "
+            "2 - Borsh "
+            "3 - Steyk s kartoshkoy "
+            "4 - Spageti "
+            "5 - Plov "
+            "6 - Pizza "
+            "7 - Dranniki "
+            "8 - Sushi ")
+
+print(vali.zakaz(foods[zak]))
+
+vremya = input("Enter the time when you would like to receive an order! ")
+print(vali.time())
+
+opl = input("Select a Payment Method! "
+            "1 - Card "
+            "2 - Cash ")
+
+print(vali.pay_zakaz(pays[opl]))
+print("Your order is accepted, Thank you! ")
