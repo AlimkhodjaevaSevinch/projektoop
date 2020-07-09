@@ -5,10 +5,14 @@
 # Клиент может оценивать каждый заказ и оставлять отзывы.
 # Администратор управляет меню, выставляет/убирает баны/ бонусы/баллы Клиентам
 
-foods = {'1': 'Burger', '2': 'Borsh', '3':'Steyk s kartoshkoy', '4': 'Spageti', '5': 'Plov'}
+foods = {'1': 'Burger', '2': 'Borsh', '3':'Steyk s kartoshkoy', '4': 'Spageti',
+         '5': 'Plov', '6':'Pizza', '7':'Dranniki', '8':'Sushi'}
 pays = {'1': 'Card', '2':'Cash'}
-class Admin:
+restaurants = ['Issimo', 'Yapona mama', 'Dominos pizza',
+               'Vasilki', 'KFC', "McDonald's", 'Uzbek food']
 
+
+class Admin:
     def __init__(self, name, surname, phone_number):
         self.name = name
         self.surname = surname
@@ -29,8 +33,8 @@ print(Seva)
 # print(Seva.menu_management())
 # print(Seva.clientPoints())
 
-class Client:
 
+class Client:
     def __init__(self, name, surname, phone_number, address, loyalty_points,
                  card_number):
         self.name = name
@@ -69,12 +73,13 @@ vali = Client("Valijon", "Rakhmatullaev", 333456789, "address - Bedi-4,", 'point
 
 
 class Rest:
-
      def __init__(self, name, address, title):
          self.name = name
          self.address = address
          self.title = title
 
+     def vibor_rest(self, restaurants):
+         return f"You chosen {vibor} restaurant"
 
      def done(self):
          return "Order is ready"
@@ -82,11 +87,37 @@ class Rest:
      def __str__(self):
          return f"Restaurant - {self.name}, address - {self.address} , title - {self.title} "
 
-rest = Rest("Imperiya ","Winners Avenue 18 ", 5)
-print(rest)
+class Food:
+    def __init__(self, name, price, description):
+        self.name = name
+        self.price = price
+        self.description = description
+
+
+
+class Order:
+    def __init__(self, Rest, Client, Food):
+        self.Rest = Rest
+        self.Client = Client
+        self.Food = Food
+
+        
+re = Rest("Imperiya ","Winners Avenue 18 ", 5)
+print(re)
 print(vali)
 # fio = input("Vvedite fio klienta! ")
 # print(vali.fio())
+
+vibor = input("Choose a restaurant! "
+             "1 - Issimo "
+             "2 - Yapona mama "
+             "3 - Dominos pizza "
+             "4 - Vasilki "
+             "5 - KFC "
+             "6 - McDonald's "
+             "7 - Uzbek food ")
+
+print(re.vibor_rest(restaurants[vibor]))
 
 
 zak = input("Choose a dish! "
@@ -94,8 +125,10 @@ zak = input("Choose a dish! "
       "2 - Borsh "
       "3 - Steyk s kartoshkoy "
       "4 - Spageti "
-      "5 - Plov ")
-
+      "5 - Plov "
+      "6 - Pizza "
+      "7 - Dranniki "
+      "8 - Sushi ")
 
 print(vali.zakaz(foods[zak]))
 
