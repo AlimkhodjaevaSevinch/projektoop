@@ -108,14 +108,14 @@ print(vali)
 # fio = input("Vvedite fio klienta! ")
 # print(vali.fio())
 
-vibor = input("Choose a restaurant! "
+vibor = int(input("Choose a restaurant! "
              "1 - Issimo "
              "2 - Yapona mama "
              "3 - Dominos pizza "
              "4 - Vasilki "
              "5 - KFC "
              "6 - McDonald's "
-             "7 - Uzbek food ")
+             "7 - Uzbek food "))
 
 print(re.vibor_rest(restaurants[vibor]))
 
